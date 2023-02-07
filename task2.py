@@ -14,8 +14,9 @@ def replace_equal_with_not_equal(programString):
 
 def add_empty_statement(programString):
     # TODO implement
-    # meaning?
-
+    it = list(re.finditer(r';\n|{\n', programString))
+    repl = random.sample(it, k=1)[0]
+    programString = programString[: repl.end()] + ';\n' + programString[repl.end():]
     return programString
 
 

@@ -82,8 +82,8 @@ if __name__ == "__main__":
     # num_to_run = 10000
     num_to_run = 1
     # print(seed_program)
-    seed_program = task2.replace_equal_with_not_equal(seed_program)
+    seed_program = task2.add_empty_statement(seed_program)
     print(seed_program)
-    seed_program = task2.replace_equal_with_not_equal(seed_program)
+    seed_program = task2.add_empty_statement(seed_program)
     print(seed_program)
     # fuzzer(seed_program, num_to_run)
