@@ -3,6 +3,8 @@ import re
 
 # TODO generate your own good seed file at ./task2_seed.c
 
+# TODO: check if the matched pattern is in a comment
+
 
 def replace_equal_with_not_equal(programString):
     # TODO implement
@@ -47,4 +49,25 @@ def make_predicate_condition_true(programString):
 
 def remove_bitwise_operators(programString):
     # TODO implement
+    # pattern = r'("[^"]*")|(&\s?(.*?)(=?\s*))'
+    # pattern = r'("[^"]*")|&'
+    # res = re.sub(r'("[^"]*")|&', lambda x: x.group(1) if x.group(1) else "replaced", programString)
+    # res = list(re.finditer(r'("[^"]*")|(&\s?(.*?)(=?\s*))', programString))
+    resand = list(re.finditer('&(\s*?).*?[\s|)|;]', programString))
+    resor = list(re.finditer('\|(\s*?).*?[\s|)|;]', programString))
+    resxor = list(re.finditer('\^(\s*?).*?[\s|)|;]', programString))
+    resls = list(re.finditer('<<(\s*?).*?[\s|)|;]', programString))
+    resrs = list(re.finditer('>>(\s*?).*?[\s|)|;]', programString))
+    resneg = list(re.finditer('~', programString))
+    it1 = resrs + resls + resxor + resor + resand
+    it2 = resneg
+    it = it1 + it2
+    if len(it) > 0:
+        repl = random.sample(it, k=1)[0]
+        idx = it.index(repl)
+        if idx < len(it1):
+            programString = programString[: repl.start()] + '' + programString[repl.end() - 1:]
+        else:
+            programString = programString[: repl.start()] + '' + programString[repl.end():]
+    # print(len(it))
     return programString

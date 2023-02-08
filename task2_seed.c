@@ -1,6 +1,7 @@
 #include <tcclib.h>
 int main(int argc, char* argv[]) {
-
+  (a = a>>2);
+  b = ~b;
   b == 2;
   if(True){
   };
